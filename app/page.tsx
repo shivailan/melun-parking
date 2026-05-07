@@ -4,10 +4,14 @@ import { AlertCircle, Camera, CheckCircle2, Loader2, MapPin, Phone, Search, User
 import dynamic from 'next/dynamic';
 import { useEffect, useState } from 'react';
 
-const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { ssr: false });
-const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false });
-const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false });
-const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false });
+// Remplace tes imports dynamiques par cette syntaxe plus précise
+const MapContainer = dynamic(() => import('react-leaflet').then(mod => mod.MapContainer), { 
+  ssr: false 
+}) as any; // Le "as any" dit à TS : "Fais-moi confiance, je sais ce que je fais"
+
+const TileLayer = dynamic(() => import('react-leaflet').then(mod => mod.TileLayer), { ssr: false }) as any;
+const Marker = dynamic(() => import('react-leaflet').then(mod => mod.Marker), { ssr: false }) as any;
+const Popup = dynamic(() => import('react-leaflet').then(mod => mod.Popup), { ssr: false }) as any;
 
 export default function MelunFinalApp() {
   const [activeTab, setActiveTab] = useState('map');
